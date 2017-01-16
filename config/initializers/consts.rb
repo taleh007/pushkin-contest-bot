@@ -23,7 +23,8 @@ class String
   end
 end
 
-data_a = JSON.parse File.read("/home/taleh_zaliyev/Downloads/pushkin-contest-bot-master/db/poems-full.json")
+# binding.pry
+data_a = JSON.parse File.read(File.expand_path("./db/poems-full.json") )
 $hash_lines={}
 data_a.each{|x| x[1].each{|y|  $hash_lines[Unicode::downcase(y.del_punc)]= x[0] }}
 
