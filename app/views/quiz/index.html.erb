@@ -1,0 +1,26 @@
+
+<div class="container">
+  <h1 class="col-md-4 col-md-offset-4">Hello world<i class="fa fa-heart"></i></h1>
+  <table class="table table-hover table-bordered table-striped">
+    <thead>
+      <th>Level</th>
+      <th>Question</th>
+      <th>Task id</th>
+      <th>Resolve Time</th>
+      <th>Answer</th>
+    </thead>
+    <tbody>
+      <% if $tasks %>
+        <% $tasks.each do |task| %>
+          <tr>
+            <td><%= task.level %></td>
+            <td><%= task.question %></td>
+            <td><%= task.task_id %></td>
+            <td><%= task.created_at %></td>
+            <td><%= task.answer %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question: MyString
+  task_id: 1
+  level: 1
+  resolve_time: 1.5
+
+two:
+  question: MyString
+  task_id: 1
+  level: 1
+  resolve_time: 1.5
