@@ -22,9 +22,7 @@ class QuizController < ApplicationController
       res=Net::HTTP.post_form(ADDR, parameters)
       task = Question.new params["question"], params["id"],params["level"], (Time.now - st), answer, res.body
       $tasks << task
-      render json: 'ok', message: answer.to_s
-      binding.pry
-
+      render json: 'ok'
       puts res.body
     else
       render json: 'error'
