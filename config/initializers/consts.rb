@@ -4,6 +4,7 @@ class Question
     attr_accessor :level
     attr_accessor :answer
     attr_accessor :resolve_time
+    attr_accessor :message
 
     def initialize(question, task_id, level, resolve_time=0, answer="", message="")
       @question = question
