@@ -10,7 +10,7 @@ class QuizController < ApplicationController
     when 1
       answer = $hash_lines[Unicode::downcase(params["question"].del_punc)]
     when 2
-      answer = $data_s[x.del_dunc.split("%WORD%", -1).map{|y| y.split(' ')}]
+      answer = $data_s[params["question"].del_dunc.split("%WORD%", -1).map{|y| y.split(' ')}]
     end
     res=""
     if answer
@@ -20,10 +20,11 @@ class QuizController < ApplicationController
         task_id:  params["id"]
       }
       res=Net::HTTP.post_form(ADDR, parameters)
-      task = Question.new params["question"], params["id"],params["level"], (Time.now - st)
-      task.message = res.body
+      task = Question.new params["question"], params["id"],params["level"], (Time.now - st), answer, res.body
       $tasks << task
-      render json: 'ok'
+      render json: 'ok', message: answer.to_s
+      binding.pry
+
       puts res.body
     else
       render json: 'error'
