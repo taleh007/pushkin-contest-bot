@@ -8,6 +8,7 @@
       <th>Task id</th>
       <th>Resolve Time</th>
       <th>Answer</th>
+      <th>Message</th>
     </thead>
     <tbody>
       <% if $tasks %>
@@ -18,6 +19,7 @@
             <td><%= task.task_id %></td>
             <td><%= task.resolve_time %></td>
             <td><%= task.answer %></td>
+            <td><%= task.message %></td>
           </tr>
         <% end %>
       <% end %>

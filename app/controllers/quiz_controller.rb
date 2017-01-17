@@ -6,12 +6,12 @@ class QuizController < ApplicationController
 
   def task
     st=Time.now
-    # task = Question.new params["question"], params["id"],params["level"]
-    # answer = $hash_lines[Unicode::downcase(task.question.del_punc)]
-    answer = $hash_lines[Unicode::downcase(params["question"].del_punc)]
-    # answer = $hash_lines[(task.question.del_punc.mb_chars.downcase.to_s)]
-    # task.answer = answer
-    # $tasks << task
+    case id = params["id"]
+    when 1
+      answer = $hash_lines[Unicode::downcase(params["question"].del_punc)]
+    when 2
+      answer = data_s[x.del_dunc.split("%WORD%", -1).map{|y| y.split(' ')}]
+    end
     res=""
     if answer
       parameters = {
@@ -21,10 +21,10 @@ class QuizController < ApplicationController
       }
       res=Net::HTTP.post_form(ADDR, parameters)
     end
-    task = Question.new params["question"], params["id"],params["level"], (Time.now - st)
-    task.answer = answer
-    $tasks << task
     render json: 'ok'
+    task = Question.new params["question"], params["id"],params["level"], (Time.now - st)
+    task.message = res.body
+    $tasks << task
     puts res.body
   end
 

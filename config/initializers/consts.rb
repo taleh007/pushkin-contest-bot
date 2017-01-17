@@ -4,29 +4,42 @@ class Question
     attr_accessor :level
     attr_accessor :answer
     attr_accessor :resolve_time
-    attr_accessor :created_at
-    attr_accessor :updated_at
 
-    def initialize(question, task_id, level, resolve_time=0, created_at=Time.now, updated_at=Time.now)
+    def initialize(question, task_id, level, resolve_time=0, answer="", message="")
       @question = question
       @task_id = task_id
       @level = level
-      @answer = ""
+      @answer = answer
       @resolve_time = resolve_time
-      @created_at = created_at
-      @updated_at = updated_at
+      @message = message
     end
 end
 class String
   def del_punc
     self.gsub(/[\~\!\@\#\$\%\^\&\*\(\)\_\+\`\-\=\№\;\?\/\,\.\/\;\'\[\]\\\|\{\}\:\"\<\>\? \—]/,"")
   end
+  def del_dunc
+    self.tr("«»\~\!\@\#\$\^\&\*\(\)\_\+\`\=\№\;\?\/\,\.\/\;\'\[\]\\\|\{\}\:\"\<\>\?\—","")
+  end
 end
 
-# binding.pry
 data_a = JSON.parse File.read(File.expand_path("./db/poems-full.json") )
+
 $hash_lines={}
 data_a.each{|x| x[1].each{|y|  $hash_lines[Unicode::downcase(y.del_punc)]= x[0] }}
+
+$data_s = {}
+data_a.map{|x| x.last}.flatten.uniq.each do |x|
+  str = x.del_dunc
+  mas = str.split(' ')
+  mas.each_with_index do |t, i|
+    if data_s[[mas[0...i], mas[(i+1)..-1]]]
+      data_s[[mas[0...i], mas[(i+1)..-1]]] = ([data_s[[mas[0...i], mas[(i+1)..-1]]]] << t).flatten
+    else
+      data_s[[mas[0...i], mas[(i+1)..-1]]] = t
+    end
+  end
+end
 
 $tasks=[]
 ADDR=URI("http://pushkin.rubyroidlabs.com/quiz")
