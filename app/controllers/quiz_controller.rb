@@ -10,7 +10,7 @@ class QuizController < ApplicationController
     when 1
       answer = $hash_lines[Unicode::downcase(params["question"].del_punc)]
     when 2
-      answer = data_s[x.del_dunc.split("%WORD%", -1).map{|y| y.split(' ')}]
+      answer = $data_s[x.del_dunc.split("%WORD%", -1).map{|y| y.split(' ')}]
     end
     res=""
     if answer

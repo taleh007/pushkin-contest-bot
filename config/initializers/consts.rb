@@ -33,10 +33,10 @@ data_a.map{|x| x.last}.flatten.uniq.each do |x|
   str = x.del_dunc
   mas = str.split(' ')
   mas.each_with_index do |t, i|
-    if data_s[[mas[0...i], mas[(i+1)..-1]]]
-      data_s[[mas[0...i], mas[(i+1)..-1]]] = ([data_s[[mas[0...i], mas[(i+1)..-1]]]] << t).flatten
+    if $data_s[[mas[0...i], mas[(i+1)..-1]]]
+      $data_s[[mas[0...i], mas[(i+1)..-1]]] = ([$data_s[[mas[0...i], mas[(i+1)..-1]]]] << t).flatten
     else
-      data_s[[mas[0...i], mas[(i+1)..-1]]] = t
+      $data_s[[mas[0...i], mas[(i+1)..-1]]] = t
     end
   end
 end
