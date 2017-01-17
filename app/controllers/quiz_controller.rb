@@ -6,7 +6,7 @@ class QuizController < ApplicationController
 
   def task
     st=Time.now
-    case id = params["id"]
+    case id = params["id"].to_i
     when 1
       answer = $hash_lines[Unicode::downcase(params["question"].del_punc)]
     when 2
@@ -20,12 +20,14 @@ class QuizController < ApplicationController
         task_id:  params["id"]
       }
       res=Net::HTTP.post_form(ADDR, parameters)
+      task = Question.new params["question"], params["id"],params["level"], (Time.now - st)
+      task.message = res.body
+      $tasks << task
+      render json: 'ok'
+      puts res.body
+    else
+      render json: 'error'
     end
-    render json: 'ok'
-    task = Question.new params["question"], params["id"],params["level"], (Time.now - st)
-    task.message = res.body
-    $tasks << task
-    puts res.body
   end
 
 end
