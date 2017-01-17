@@ -6,7 +6,7 @@ class QuizController < ApplicationController
 
   def task
     st=Time.now
-    case id = params["id"].to_i
+    case level = params["level"].to_i
     when 1
       answer = $hash_lines[Unicode::downcase(params["question"].del_punc)]
     when 2
