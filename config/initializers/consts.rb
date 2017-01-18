@@ -80,14 +80,14 @@ data_a.each{|x| x[1].each{|y| $data_67[y.del_punc.chars.sort]= y }}
 ################################
 #8
 ################################
-$data_8={}
-data_a.map{|x| x.last}.flatten.uniq.each do |x|
-  str = x.del_punc
-  mas = str.chars.sort
-  mas.each_with_index do |t, i|
-    $data_8[[mas[0...i], mas[(i+1)..-1]].flatten] = x
-  end
-end
+# $data_8={}
+# data_a.map{|x| x.last}.flatten.uniq.each do |x|
+#   str = x.del_punc
+#   mas = str.chars.sort
+#   mas.each_with_index do |t, i|
+#     $data_8[[mas[0...i], mas[(i+1)..-1]].flatten] = x
+#   end
+# end
 
 
 

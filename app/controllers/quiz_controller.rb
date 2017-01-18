@@ -31,10 +31,10 @@ class QuizController < ApplicationController
     when 7
       answer = $data_67[params["question"].del_punc.chars.sort]
     when 8
-      mas = params["question"].del_punc.chars.sort
-      mas.each_with_index do |t, i|
-        break if (answer = $data_8[[mas[0...i], mas[(i+1)..-1]].flatten])
-      end
+      # mas = params["question"].del_punc.chars.sort
+      # mas.each_with_index do |t, i|
+      #   break if (answer = $data_8[[mas[0...i], mas[(i+1)..-1]].flatten])
+      # end
     end
     res=""
     if answer
