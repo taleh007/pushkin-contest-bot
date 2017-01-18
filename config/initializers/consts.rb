@@ -15,6 +15,8 @@ class Question
       @message = message
     end
 end
+
+
 class String
   def del_punc
     self.gsub(/[\~\!\@\#\$\%\^\&\*\(\)\_\+\`\-\=\№\;\?\/\,\.\/\;\'\[\]\\\|\{\}\:\"\<\>\? \—]/,"")
@@ -25,22 +27,57 @@ class String
 end
 
 data_a = JSON.parse File.read(File.expand_path("./db/poems-full.json") )
-
-$hash_lines={}
-data_a.each{|x| x[1].each{|y|  $hash_lines[Unicode::downcase(y.del_punc)]= x[0] }}
-
-$data_s = {}
+################################
+################################
+################################
+#1
+################################
+$data_1={}
+data_a.each{|x| x[1].each{|y|  $data_1[Unicode::downcase(y.del_punc)]= x[0] }}
+################################
+################################
+#2-3-4
+################################
+$data_234 = {}
 data_a.map{|x| x.last}.flatten.uniq.each do |x|
   str = x.del_dunc
   mas = str.split(' ')
   mas.each_with_index do |t, i|
-    if $data_s[[mas[0...i], mas[(i+1)..-1]]]
-      $data_s[[mas[0...i], mas[(i+1)..-1]]] = ([$data_s[[mas[0...i], mas[(i+1)..-1]]]] << t).flatten
+    if $data_234[[mas[0...i], mas[(i+1)..-1]]]
+      $data_234[[mas[0...i], mas[(i+1)..-1]]] = ([$data_234[[mas[0...i], mas[(i+1)..-1]]]] << t).flatten
     else
-      $data_s[[mas[0...i], mas[(i+1)..-1]]] = t
+      $data_234[[mas[0...i], mas[(i+1)..-1]]] = t
     end
   end
 end
+################################
+################################
+#5
+################################
+
+
+
+################################
+################################
+#6-7
+################################
+
+
+
+
+
+################################
+################################
+#8
+################################
+
+
+
+
+
+
+
+
 
 $tasks=[]
 ADDR=URI("http://pushkin.rubyroidlabs.com/quiz")
