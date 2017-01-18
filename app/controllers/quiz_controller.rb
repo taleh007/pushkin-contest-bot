@@ -10,7 +10,8 @@ class QuizController < ApplicationController
     answer=nil
     case level = params["level"].to_i
     when 1
-      answer = $data_1[Unicode::downcase(params["question"].del_punc)]
+      answer = $data_1[params["question"].del_punc]
+      # answer = $data_1[Unicode::downcase(params["question"].del_punc)]
     when 2
       answer = $data_234[params["question"].del_dunc.split("%WORD%", -1).map{|y| y.split(' ')}]
     when 3
@@ -31,10 +32,8 @@ class QuizController < ApplicationController
     when 7
       answer = $data_67[params["question"].del_punc.chars.sort]
     when 8
-      # mas = params["question"].del_punc.chars.sort
-      # mas.each_with_index do |t, i|
-      #   break if (answer = $data_8[[mas[0...i], mas[(i+1)..-1]].flatten])
-      # end
+      mas = params["question"].del_punc.chars
+      answer = $data_8_[mas.size].select{|k,v| (1..2).include? (mas - k | k - mas).size}.first.last
     end
     res=""
     if answer
