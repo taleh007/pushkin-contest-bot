@@ -7,14 +7,14 @@ class QuizController < ApplicationController
 
   def task
     st=Time.now
-    case level = params["level"]
-    when "1"
+    case level = params["level"].to_i
+    when 1
       answer = $data_1[Unicode::downcase(params["question"].del_punc)]
-    when "2"
+    when 2
       answer = $data_234[params["question"].del_dunc.split("%WORD%", -1).map{|y| y.split(' ')}]
-    when "3"
+    when 3
       answer = params["question"].split("\n").map{|y| $data_234[y.del_dunc.split("%WORD%", -1).map{|y| y.split(' ')}]}.join(',')
-    when "4"
+    when 4
       answer = params["question"].split("\n").map{|y| $data_234[y.del_dunc.split("%WORD%", -1).map{|y| y.split(' ')}]}.join(',')
     end
     res=""

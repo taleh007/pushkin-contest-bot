@@ -50,6 +50,7 @@ data_a.map{|x| x.last}.flatten.uniq.each do |x|
     end
   end
 end
+
 ################################
 ################################
 #5
