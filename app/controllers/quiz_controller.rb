@@ -2,7 +2,7 @@ class QuizController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    puts "{ original_url => #{request.original_url}, ip => #{request.ip}"
+    puts "{ original_url => #{request.original_url}, ip => #{request.remote_ip}"
   end
 
   def task
@@ -28,12 +28,12 @@ class QuizController < ApplicationController
         end
       end
     when 6
-      answer = $data_67[params["question"].del_punc.chars.sort]
+      answer = $data_67[params["question"].del_punc.chars.sort].gsub(" —","")
     when 7
-      answer = $data_67[params["question"].del_punc.chars.sort]
+      answer = $data_67[params["question"].del_punc.chars.sort].gsub(" —","")
     when 8
       mas = params["question"].del_punc.chars
-      answer = $data_8_[mas.size].select{|k,v| (1..2).include? (mas - k | k - mas).size}.first.last
+      answer = $data_8_[mas.size].select{|k,v| (1..2).include? (mas - k | k - mas).size}.first.last.gsub(" —","")
     end
     res=""
     if answer
@@ -48,8 +48,7 @@ class QuizController < ApplicationController
       render json: 'ok'
       puts res.body
     else
-      puts res
-      puts answer.class
+      puts "'#{params["question"]}'"
       render json: 'error'
     end
   end

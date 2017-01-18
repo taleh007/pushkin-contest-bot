@@ -23,7 +23,11 @@ class NilClass
   def last
     nil
   end
+  def gsub(*a)
+    nil
+  end
 end
+
 class String
   def del_punc
     self.gsub(/[\~\!\@\#\$\%\^\&\*\(\)\_\+\`\-\=\№\;\?\/\,\.\/\;\'\[\]\\\|\{\}\:\"\<\>\? \—]/,"")
