@@ -7,6 +7,7 @@ class QuizController < ApplicationController
 
   def task
     st=Time.now
+    answer=nil
     case level = params["level"].to_i
     when 1
       answer = $data_1[Unicode::downcase(params["question"].del_punc)]
@@ -16,6 +17,24 @@ class QuizController < ApplicationController
       answer = params["question"].split("\n").map{|y| $data_234[y.del_dunc.split("%WORD%", -1).map{|y| y.split(' ')}]}.join(',')
     when 4
       answer = params["question"].split("\n").map{|y| $data_234[y.del_dunc.split("%WORD%", -1).map{|y| y.split(' ')}]}.join(',')
+    when 5
+      mas = params["question"].del_dunc.split(' ')
+      mas.each_with_index do |t, i|
+        if answer = $data_5[[mas[0...i], mas[(i+1)..-1]]]
+          answer[-1]=t
+          answer = answer.join(",")
+          break
+        end
+      end
+    when 6
+      answer = $data_67[params["question"].del_punc.chars.sort]
+    when 7
+      answer = $data_67[params["question"].del_punc.chars.sort]
+    when 8
+      mas = params["question"].del_punc.chars.sort
+      mas.each_with_index do |t, i|
+        break if (answer = $data_8[[mas[0...i], mas[(i+1)..-1]].flatten])
+      end
     end
     res=""
     if answer
