@@ -1,0 +1,11 @@
+all:
+  exclude:
+    - 'test/**/*'
+    - 'tmp/**/*'
+github:
+  slug: taleh007/pushkin-contest-bot
+  access_token: 0ee841ad7339a826be5de484cd57c137b7723f45
+  api_endpoint: https://api.github.com/
+  web_endpoint: https://github.com/
+max_warnings: 1500
+verbose: true
