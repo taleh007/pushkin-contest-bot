@@ -16,6 +16,17 @@ class Question
     end
 end
 
+class NilClass
+  def first
+    nil
+  end
+  def last
+    nil
+  end
+  def gsub(*a)
+    nil
+  end
+end
 
 class String
   def del_punc
@@ -26,6 +37,7 @@ class String
   end
 end
 
+
 data_a = JSON.parse File.read(File.expand_path("./db/poems-full.json") )
 ################################
 ################################
@@ -33,7 +45,8 @@ data_a = JSON.parse File.read(File.expand_path("./db/poems-full.json") )
 #1
 ################################
 $data_1={}
-data_a.each{|x| x[1].each{|y|  $data_1[Unicode::downcase(y.del_punc)]= x[0] }}
+data_a.each{|x| x[1].each{|y|  $data_1[y.del_punc]= x[0] }}
+# data_a.each{|x| x[1].each{|y|  $data_1[Unicode::downcase(y.del_punc)]= x[0] }}
 ################################
 ################################
 #2-3-4
@@ -79,7 +92,7 @@ data_a.each{|x| x[1].each{|y| $data_67[y.del_punc.chars.sort]= y }}
 ################################
 ################################
 #8
-################################
+###############################
 # $data_8={}
 # data_a.map{|x| x.last}.flatten.uniq.each do |x|
 #   str = x.del_punc
@@ -88,7 +101,12 @@ data_a.each{|x| x[1].each{|y| $data_67[y.del_punc.chars.sort]= y }}
 #     $data_8[[mas[0...i], mas[(i+1)..-1]].flatten] = x
 #   end
 # end
-
+$data_8_={}
+data_a.map{|x| x.last}.flatten.uniq.each do |x|
+  mas = x.del_punc.chars
+  $data_8_[mas.size]||={}
+  $data_8_[mas.size][mas] = x
+end
 
 
 
