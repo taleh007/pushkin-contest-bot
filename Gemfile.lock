@@ -90,7 +90,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    puma (3.6.2)
+    puma (3.12.6)
     racc (1.5.2)
     rack (2.2.3)
     rack-test (0.6.3)
@@ -168,7 +168,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   pry
-  puma (~> 3.0)
+  puma (~> 3.12)
   rails (~> 5.0.1)
   sass-rails (~> 5.0)
   sqlite3
